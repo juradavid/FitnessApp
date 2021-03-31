@@ -6,70 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".first_page">
 
-    <RelativeLayout
-        android:id="@+id/rectangle_1"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+    <View
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="456dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/rectangle_light"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-        <View
-            android:id="@+id/vector_1"
-            android:layout_width="match_parent"
-            android:layout_height="999dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="-4dp"
-            android:layout_marginBottom="235dp"
-            android:background="@drawable/vector_light"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/sign_in_google"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/first_rounded_button_light"
+        android:drawableLeft="@drawable/google_light"
+        android:text="CONNECT WITH GOOGLE"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/button_sign_in_google"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            app:backgroundTint="@null"
-            android:textColor="@color/black"
-            android:layout_marginStart="80dp"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:background="@drawable/first_rounded_button_light"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="85dp"
-            android:drawableLeft="@drawable/google_32px"
-            style="?android:attr/borderlessButtonStyle"
-            android:text="SIGN IN WITH GOOGLE" />
+    <Button
+        android:id="@+id/sign_in_email"
+        android:layout_width="@+id/sign_in_google"
+        android:layout_height="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/first_rounded_button_light"
+        android:drawableLeft="@drawable/email_light"
+        android:text="CONNECT WITH EMAIL"
+        android:textColor="@color/black"
+        style="?android:attr/borderlessButtonStyle"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_google"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_google" />
 
-        <Button
-            android:id="@+id/button_sing_in_email"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            app:backgroundTint="@null"
-            android:textColor="@color/black"
-            android:layout_marginStart="80dp"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:background="@drawable/first_rounded_button_light"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="25dp"
-            android:drawablePadding="100dp"
-            style="?android:attr/borderlessButtonStyle"
-            android:drawableLeft="@drawable/important_mail_32px"
-            android:text="SIGN IN WITH E-MAIL" />
-
-    </RelativeLayout>
-
+    <View
+        android:id="@+id/some_id"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/first_illustration_light"
+        app:layout_constraintBottom_toTopOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

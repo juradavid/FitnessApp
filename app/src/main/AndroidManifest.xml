@@ -12,9 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessApp">
-        <activity android:name=".no_internet_connection"></activity>
-        <activity android:name=".first_page" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".no_internet_connection"
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name=".first_page"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
