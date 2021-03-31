@@ -8,16 +8,16 @@
 
     <View
         android:id="@+id/no_internet_illustration"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/connection_light"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.442" />
 
     <TextView
         android:id="@+id/textView2"
@@ -25,31 +25,31 @@
         android:layout_height="wrap_content"
         android:text="No Internet Connection"
         android:textColor="#386C5F"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/no_internet_illustration"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintVertical_bias="0.129" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="200dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="50dp"
-        android:text="TRY AGAIN"
+        android:background="@drawable/no_internet_button_light"
         android:drawableLeft="@drawable/reset_light"
+        android:text="TRY AGAIN"
         android:textSize="15dp"
         android:textStyle="bold"
-        android:background="@drawable/no_internet_button_light"
-        app:backgroundTint= "@null"
-        style="?android:attr/borderlessButtonStyle"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.992" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

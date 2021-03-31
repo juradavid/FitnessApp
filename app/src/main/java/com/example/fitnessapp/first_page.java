@@ -35,24 +35,9 @@ public class first_page extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        while(CONNECTION){
+        while(CONNECTION && !hasFocus){
             checkConnection();
         }
         if(!CONNECTION){
@@ -70,10 +55,6 @@ public class first_page extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-    }
 
     public void checkConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
