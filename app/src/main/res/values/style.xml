@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="noInternetConnection">
+        <item name="stTextBold">true</item>
+        <item name="stTextColor">@color/principalTextColor</item>
+        <item name="stTextSize">15sp</item>
+        <item name="stColorBackground">#995CAB75</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stIconStart">@drawable/offline_light</item>
+        <item name="stLength">SHORT</item> LONG or SHORT
+        <item name="stRadius">30dp</item>
+    </style>
+
+</resources>

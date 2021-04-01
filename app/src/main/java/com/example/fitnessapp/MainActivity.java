@@ -2,19 +2,23 @@ package com.example.fitnessapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
 
@@ -23,30 +27,26 @@ public class MainActivity extends AppCompatActivity {
     public static String SHARED_PREFS = "com.example.fitnesapp";
 
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+
+    MotionLayout motionLayout;
+
+    public int isFocus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        editor = sharedPreferences.edit();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        if(!Network.isConnectedToInternet(getApplicationContext())){
-            String activityName = this.getClass().getCanonicalName();
-            editor.putString("lastActivity", activityName);
-            editor.commit();
-            Intent intent = new Intent(getApplicationContext(), no_internet_connection.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK |
-                    Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        }else {
             setContentView(R.layout.activity_main);
-
             //After 5 seconds from the last command the new activity well be launched
-            if (Network.isConnectedToInternet(getApplicationContext())) {
                 Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        motionLayout = findViewById(R.id.splash_motion);
+                        motionLayout.transitionToEnd();
+                    }
+                },200);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -57,14 +57,14 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         overridePendingTransition(R.anim.slide_right, R.anim.slide_out_left);
                     }
-                }, 5000);
+                }, 900);
             }
-        }
-    }
+
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
+    protected void onStop() {
+        super.onStop();
+        System.out.println("DISTRUGE-L");
     }
 
     //Back button is disable

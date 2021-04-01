@@ -29,7 +29,8 @@
         app:layout_constraintBottom_toTopOf="@+id/background"
         app:layout_constraintEnd_toEndOf="@+id/sign_in_email"
         app:layout_constraintStart_toStartOf="@+id/sign_in_email"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.494" />
 
     <Button
         android:id="@+id/sign_in_email"

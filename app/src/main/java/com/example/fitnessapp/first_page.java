@@ -24,12 +24,18 @@ public class first_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
-        //We apply the light or night graphics
-        background = findViewById(R.id.background);
         sharedPreferences =  getSharedPreferences(MainActivity.SHARED_PREFS, MODE_PRIVATE);
-        String app_mode = sharedPreferences.getString("app_mode", "");
-        if(app_mode.equals("light")){
-            background.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.background_light));
+        if(!Network.isConnectedToInternet(getApplicationContext())){
+            String activityName = this.getClass().getCanonicalName();
+            editor = sharedPreferences.edit();
+            editor.putString("lastActivity",activityName);
+            editor.commit();
+            Intent intent = new Intent(getApplicationContext(),no_internet_connection.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK |
+                    Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
         }
     }
 
@@ -51,6 +57,22 @@ public class first_page extends AppCompatActivity {
                 }
             }
             refresh(500);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(!Network.isConnectedToInternet(getApplicationContext())){
+            String activityName = this.getClass().getCanonicalName();
+            editor.putString("lastActivity", activityName);
+            editor.commit();
+            Intent intent = new Intent(getApplicationContext(),no_internet_connection.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK |
+                    Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
         }
     }
 

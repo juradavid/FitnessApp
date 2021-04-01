@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoast.StyleableToast;
+
 public class no_internet_connection extends AppCompatActivity {
 
     Button tryButton;
@@ -48,7 +50,7 @@ public class no_internet_connection extends AppCompatActivity {
                     editor.putString("lastActivty","");
                     editor.commit();
                 }else{
-                    Toast.makeText(getApplicationContext(),"Check your internet connection", Toast.LENGTH_LONG).show();
+                    StyleableToast.makeText(getApplicationContext(),"Check your internet connection", Toast.LENGTH_SHORT,R.style.noInternetConnection).show();
                 }
             }
         });
