@@ -10,20 +10,48 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class no_internet_connection extends AppCompatActivity {
 
-    public static boolean CONNECTION = false;
+    Button tryButton;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_internet_connection);
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+        sharedPreferences = getSharedPreferences(MainActivity.SHARED_PREFS, MODE_PRIVATE);
+        System.out.println(sharedPreferences.getString("lastActivity","") + " activity");
+        tryButton = findViewById(R.id.try_again);
+        tryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Network.isConnectedToInternet(getApplicationContext())){
+                    String lastActivity = sharedPreferences.getString("lastActivity","");
+                    try {
+                        Class classByName = Class.forName(lastActivity);
+                        Intent intent = new Intent(getApplicationContext(), classByName);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK |
+                                Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("lastActivty","");
+                    editor.commit();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Check your internet connection", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     //When user press on back button the activity will be put in the background of the phone
@@ -31,29 +59,6 @@ public class no_internet_connection extends AppCompatActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
     }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        System.out.println("PAUSE");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("RESUME");
-    }
-
 
     public void checkUserMode(){
         SharedPreferences.Editor editor = getSharedPreferences(MainActivity.SHARED_PREFS,MODE_PRIVATE).edit();
@@ -69,16 +74,6 @@ public class no_internet_connection extends AppCompatActivity {
                 editor.putString("app_mode", "light");
                 editor.commit();
                 break;
-        }
-    }
-
-    public void checkConnection(){
-        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-        if(isConnected) {
-            CONNECTION = true;
         }
     }
 }

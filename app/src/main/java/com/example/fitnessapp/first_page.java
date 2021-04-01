@@ -3,23 +3,22 @@ package com.example.fitnessapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 public class first_page extends AppCompatActivity {
 
     View background;
 
-    SharedPreferences sharedPreferences;
+    public static boolean CONNECTION;
 
-    public static boolean CONNECTION = true;
+    public boolean isActive;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +33,56 @@ public class first_page extends AppCompatActivity {
         }
     }
 
+    public void content(){
+        if(isActive) {
+            if(!hasWindowFocus()){
+                if(!Network.isConnectedToInternet(getApplicationContext())){
+                    String activityName = this.getClass().getCanonicalName();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("lastActivity", activityName);
+                    editor.commit();
+                    isActive = false;
+                    Intent intent = new Intent(getApplicationContext(),no_internet_connection.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                }
+            }
+            refresh(500);
+        }
+    }
+
+    public void refresh(int miliseconds){
+        final Handler fHandler = new Handler();
+
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                content();
+            }
+        };
+
+        fHandler.postDelayed(runnable, miliseconds);
+    }
+
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        while(CONNECTION && !hasFocus){
-            checkConnection();
-        }
-        if(!CONNECTION){
-            Intent intent = new Intent(getApplicationContext(), no_internet_connection.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+        if(!hasFocus){
+            isActive = true;
+            content();
+        }else{
+            isActive = false;
         }
     }
+
 
     //When user press on back button the activity will be put in the background of the phone
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
-    }
-
-
-    public void checkConnection(){
-        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-        if(!isConnected){
-            CONNECTION = false;
-        }
     }
 }
