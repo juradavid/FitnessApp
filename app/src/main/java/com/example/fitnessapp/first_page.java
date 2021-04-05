@@ -5,14 +5,23 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 public class first_page extends AppCompatActivity {
-
-    View background;
 
     public static boolean CONNECTION;
 
@@ -22,12 +31,20 @@ public class first_page extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     Button sign_in_email;
+    TextView sTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
         sharedPreferences =  getSharedPreferences(MainActivity.SHARED_PREFS, MODE_PRIVATE);
+
+        sTextView = findViewById(R.id.sTextView);
+        SpannableString spannableString = new SpannableString(sTextView.getText());
+        spannableString.setSpan(new ForegroundColorSpan(Color.rgb(146,227,169)),10,21, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD),10,21,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sTextView.setText(spannableString);
+
         if(!Network.isConnectedToInternet(getApplicationContext())){
             String activityName = this.getClass().getCanonicalName();
             editor = sharedPreferences.edit();
@@ -40,6 +57,7 @@ public class first_page extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
+
         sign_in_email = findViewById(R.id.sign_in_email);
         sign_in_email.setOnClickListener(new View.OnClickListener() {
             @Override

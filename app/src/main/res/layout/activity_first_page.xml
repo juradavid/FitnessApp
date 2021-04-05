@@ -4,19 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_light"
     tools:context=".first_page">
-
-    <View
-        android:id="@+id/background"
-        android:layout_width="wrap_content"
-        android:layout_height="430dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/some_id"
@@ -24,13 +13,11 @@
         android:layout_height="350dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
         android:background="@drawable/first_illustration_light"
-        app:layout_constraintBottom_toTopOf="@+id/background"
+        app:layout_constraintBottom_toTopOf="@+id/pTextView"
         app:layout_constraintEnd_toEndOf="@+id/sign_in_email"
         app:layout_constraintStart_toStartOf="@+id/sign_in_email"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/sign_in_email"
@@ -67,5 +54,33 @@
         app:layout_constraintEnd_toEndOf="@+id/sign_in_email"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/sign_in_email" />
+
+    <TextView
+        android:id="@+id/pTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MAKE YOUR LIFESTYLE BETTER"
+        android:textColor="@color/principalTextColor"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/sTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Easy with FITNESS-APP"
+        android:textColor="@color/secondTextColor"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pTextView"
+        app:layout_constraintTop_toBottomOf="@+id/pTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
