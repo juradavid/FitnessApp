@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         overridePendingTransition(R.anim.slide_right, R.anim.slide_out_left);
+                        finish();
                     }
                 }, 900);
             }
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        System.out.println("DISTRUGE-L");
     }
 
     //Back button is disable

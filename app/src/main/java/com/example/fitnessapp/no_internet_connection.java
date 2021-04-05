@@ -38,16 +38,21 @@ public class no_internet_connection extends AppCompatActivity {
                     try {
                         Class classByName = Class.forName(lastActivity);
                         Intent intent = new Intent(getApplicationContext(), classByName);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("lastActivity","");
+                        editor.commit();
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);
+                        finish();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
+                        System.out.println("A APARUT O EROARE");
                     }
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("lastActivty","");
+                    editor.putString("lastActivity","");
                     editor.commit();
                 }else{
                     StyleableToast.makeText(getApplicationContext(),"Check your internet connection", Toast.LENGTH_SHORT,R.style.noInternetConnection).show();
