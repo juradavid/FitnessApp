@@ -39,7 +39,6 @@ public class first_page extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
-            finish();
         }
         sign_in_email = findViewById(R.id.sign_in_email);
         sign_in_email.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +50,6 @@ public class first_page extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 overridePendingTransition(R.anim.slide_right, R.anim.slide_out_left);
                 startActivity(intent);
-                finish();
             }
         });
     }
@@ -71,7 +69,6 @@ public class first_page extends AppCompatActivity {
                             Intent.FLAG_ACTIVITY_NEW_TASK |
                             Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
-                    finish();
                 }
             }
             refresh(500);
@@ -93,7 +90,6 @@ public class first_page extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -109,7 +105,6 @@ public class first_page extends AppCompatActivity {
 
         fHandler.postDelayed(runnable, miliseconds);
     }
-
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

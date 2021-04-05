@@ -50,7 +50,6 @@ public class second_page extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 overridePendingTransition(R.anim.slide_right, R.anim.slide_out_left);
                 startActivity(intent);
-                finish();
             }
         },32,39,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sHeader.setText(ssHeader);
@@ -70,7 +69,6 @@ public class second_page extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 overridePendingTransition(R.anim.slide_right, R.anim.slide_out_left);
                 startActivity(intent);
-                finish();
             }
         },13,37,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         checkBox.setText(sCheckBox);
@@ -88,7 +86,6 @@ public class second_page extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -97,7 +94,6 @@ public class second_page extends AppCompatActivity {
             if (!hasWindowFocus()) {
                 if (!Network.isConnectedToInternet(getApplicationContext())) {
                     String activityName = this.getClass().getCanonicalName();
-                    System.out.println(activityName + " hai mane uitate la minee");
                     sharedPreferences = getSharedPreferences(MainActivity.SHARED_PREFS, MODE_PRIVATE);
                     editor = sharedPreferences.edit();
                     editor.putString("lastActivity", activityName);
@@ -109,7 +105,6 @@ public class second_page extends AppCompatActivity {
                             Intent.FLAG_ACTIVITY_NEW_TASK |
                             Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
-                    finish();
                 }
             }
             refresh(500);
@@ -141,10 +136,17 @@ public class second_page extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("SALUT");
+    }
+
+    @Override
     protected void onRestart() {
         super.onRestart();
         if(!Network.isConnectedToInternet(getApplicationContext())){
             String activityName = this.getClass().getCanonicalName();
+            sharedPreferences =  getSharedPreferences(MainActivity.SHARED_PREFS, MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString("lastActivity", activityName);
             editor.commit();
@@ -154,7 +156,6 @@ public class second_page extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -167,6 +168,5 @@ public class second_page extends AppCompatActivity {
                 Intent.FLAG_ACTIVITY_NEW_TASK);
         overridePendingTransition(R.anim.slide_left, R.anim.slide_out_right);
         startActivity(intent);
-        finish();
     }
 }

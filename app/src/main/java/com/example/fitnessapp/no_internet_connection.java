@@ -46,7 +46,6 @@ public class no_internet_connection extends AppCompatActivity {
                                 Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);
-                        finish();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                         System.out.println("A APARUT O EROARE");
