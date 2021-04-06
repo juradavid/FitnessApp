@@ -41,13 +41,13 @@
         android:textColor="@color/principalTextColor"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sHeader"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
@@ -75,12 +75,12 @@
         android:textColor="@color/principalTextColor"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
@@ -109,12 +109,12 @@
         android:textColor="@color/principalTextColor"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
@@ -143,12 +143,12 @@
         android:textColor="@color/principalTextColor"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+        app:layout_constraintBottom_toTopOf="@+id/phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
@@ -178,12 +178,12 @@
         android:textColor="@color/principalTextColor"
         android:textSize="12dp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/registerButton"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
